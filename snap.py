@@ -9,7 +9,6 @@ import googlemaps
 
 
 def snap_to_road(data, interpolate=False):
-<<<<<<< HEAD
     """Snaps lat-lng coordinates to roads using Google Maps Roads API.
 
     Parameters:
@@ -26,8 +25,6 @@ def snap_to_road(data, interpolate=False):
     Returns:
         A list containing information on the snapped points.
     """
-=======
->>>>>>> 79137b2c52e3018e498421a6aa0ea3b01d462498
     gmaps = googlemaps.Client(key='AIzaSyD8IMQPEn0qiIw144Sv7hrYDtcGcb7mcvk')
     chunks = []
     for i in range(0, len(data), 100):
