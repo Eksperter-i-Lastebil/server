@@ -10,6 +10,22 @@ import googlemaps
 
 
 def snap_to_road(data, interpolate=False, chunk_size=100):
+    """Snaps lat-lng coordinates to roads using Google Maps Roads API.
+
+    Parameters:
+        data        : 2D list, each row in the matrix is a list of length 2,
+                      containing latitude and longitude
+        interpolate : bool, optional, whether to interpolate a path to include
+                      all points forming the full road-geometry. When true,
+                      additional interpolated points will also be returned,
+                      resulting in a path that smoothly follows the geometry
+                      of the road, even around corners and through tunnels.
+                      Interpolated paths may contain more points than the
+                      original path.
+
+    Returns:
+        A list containing information on the snapped points.
+    """
     coords = data[:, 1:3]
     gmaps = googlemaps.Client(key='AIzaSyD8IMQPEn0qiIw144Sv7hrYDtcGcb7mcvk')
     chunks = []
