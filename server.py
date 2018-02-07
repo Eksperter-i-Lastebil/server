@@ -2,7 +2,6 @@ import time
 import json
 import snap
 
-GlobalList = []
 
 from flask import *
 app = Flask(__name__)
@@ -10,6 +9,9 @@ GlobalList = []
 
 
 
+
+def Pushtodb(Snappedlist):
+    print("pushed to DB")
 
 @app.route("/")
 def index():
@@ -27,38 +29,17 @@ def events():
     print("dummy:", dummyList)
     global GlobalList
     GlobalList.append(dummyList)
-    if (len(GlobalList) > 1):
+    if (len(GlobalList) > 10):
         print("multiple entries:")
         print(GlobalList)
         Snappedlist = snap.snap_to_road(GlobalList, True)
         print("new:")
         print(Snappedlist)
         GlobalList = []
-
-        #pushToDB
+        Pushtodb(Snappedlist)
     return "ok"
 
-
-def MarkusFunc():
-    if ShouldSend(): ## hvis over gitt antall punkt
-
-
-        print("sender til snap...")
-        '''
-        sender:
-        [[id, lat, lng, time]]
-         [id, lat, lng, time]]
-        ##
-        mottar:
-        [[id, lat, lng, time]
-        [id, lat, lng, time]
-        [id, lat, lng, time]]
-
-        pushToDB() ->
-    else:
-        print("avventer")
-'''
-
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', threaded=True)
+  #  app.run(host='0.0.0.0', threaded=True)
+    app.run(host='0.0.0.0', port=33)
 
