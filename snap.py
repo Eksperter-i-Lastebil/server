@@ -12,8 +12,6 @@ import googlemaps
 def snap_to_road(data, interpolate=False, chunk_size=100):
     """Snaps lat-lng coordinates to roads using Google Maps Roads API.
 
-    *** OUTDATED ***
-
     Parameters:
         data        : 2D list, each row in the matrix is a list on the form
                       [id, lat, lng, time, type]
@@ -24,6 +22,8 @@ def snap_to_road(data, interpolate=False, chunk_size=100):
                       of the road, even around corners and through tunnels.
                       Interpolated paths may contain more points than the
                       original path.
+        chunk_size  : int, optional, number of coordinate sets to be sent to
+                      the Google Maps Roads. Must not exceed 100.
 
     Returns:
         A list containing information on the snapped points.
