@@ -37,10 +37,10 @@ def load_data(filename, delimiter=','):
     return np.loadtxt(filename, delimiter=delimiter, dtype=np.str)
 
 test_data = gen_test_data_from_coords('test-data.txt')
-save_data('test-data-1.txt', test_data)
+save_data('test-data-notype.txt', test_data)
 
-from snap import *
-new_data = snap_to_road(test_data, interpolate=True, chunk_size=100)
-save_data('road-data-1.txt', new_data)
+# from snap import *
+# new_data = snap_to_road(test_data, interpolate=True, chunk_size=100)
+# save_data('road-data-1.txt', new_data)
 
 a = load_data('road-data-1.txt', delimiter=',')
