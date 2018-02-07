@@ -12,9 +12,11 @@ import googlemaps
 def snap_to_road(data, interpolate=False, chunk_size=100):
     """Snaps lat-lng coordinates to roads using Google Maps Roads API.
 
+    *** OUTDATED ***
+
     Parameters:
-        data        : 2D list, each row in the matrix is a list of length 2,
-                      containing latitude and longitude
+        data        : 2D list, each row in the matrix is a list on the form
+                      [id, lat, lng, time, type]
         interpolate : bool, optional, whether to interpolate a path to include
                       all points forming the full road-geometry. When true,
                       additional interpolated points will also be returned,
@@ -56,35 +58,3 @@ def reformat_data(data, road):
             new_data = np.concatenate((new_data, data[id_:id_ + 1, :]))
             prev_original = i
     return new_data
-
-
-#
-# import time
-# import datetime
-# import numpy as np
-# data = np.loadtxt('test-data.txt', delimiter=' , ')
-#
-# id_ = np.arange(data.shape[0], dtype=np.int32)
-# id_ = np.reshape(id_, (id_.shape[0], 1))
-# id_[:20] = 0
-# id_[20:] = 1
-#
-# timestamps = [datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') for _ in range(data.shape[0])]
-# timestamps = np.reshape(np.array(timestamps), (data.shape[0], 1))
-# timestamps.shape
-#
-# datatypes = ['brøyte', 'skrape', 'strø', 'salt']
-# types = [datatypes[np.random.randint(0, len(datatypes))] for _ in range(data.shape[0])]
-# types = np.reshape(np.array(types), (data.shape[0], 1))
-#
-# data = np.concatenate((id_, data, timestamps, types), axis=1)
-# data.shape
-#
-# new_data = snap_to_road(data, interpolate=True, chunk_size=10)
-# print(data.shape)
-# print(new_data.shape)
-# print(new_data)
-#
-# with open('test1.txt', mode='w') as f:
-#     for row in new_data:
-#         f.write(str(row)[1:-1].replace('\'', '').replace(' ', ',') + '\n')
