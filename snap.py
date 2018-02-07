@@ -28,6 +28,7 @@ def snap_to_road(data, interpolate=False, chunk_size=100):
     Returns:
         A list containing information on the snapped points.
     """
+    data = np.array(data)
     coords = data[:, 1:3]
     gmaps = googlemaps.Client(key='AIzaSyD8IMQPEn0qiIw144Sv7hrYDtcGcb7mcvk')
     chunks = []
