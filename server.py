@@ -1,7 +1,7 @@
 import time
 import json
 import snap
-
+import db
 
 import numpy as np
 from flask import *
@@ -11,7 +11,10 @@ globalList = []
 
 
 def Pushtodb(Snappedlist):
-    print("pushed to DB")
+    print("pushing to DB...")
+    for row in Snappedlist:
+        db.db_insert(row[0],row[1],row[2],row[3])
+
 
 @app.route("/")
 def index():
@@ -45,7 +48,7 @@ def events():
         print(snappedlist.shape)
         print(snappedlist)
 
-        #pushToDB
+        Pushtodb(snappedlist)
     return "ok"
 
 
