@@ -2,18 +2,20 @@ import time
 import json
 import snap
 import db
+import os
 
 import numpy as np
 from flask import *
 app = Flask(__name__)
 
 globalList = []
-
+print(os.getpid())
+#db.db_newtrip('broyt','56')
 
 def Pushtodb(Snappedlist):
     print("pushing to DB...")
-    for row in Snappedlist:
-        db.db_insert(row[0],row[1],row[2],row[3])
+   # for row in Snappedlist:
+    #    db.db_insert(row[0],row[1],row[2],row[3])
 
 
 @app.route("/")
@@ -26,6 +28,7 @@ def hello():
 
 @app.route('/events', methods=['POST'])
 def events():
+#    os.getpid()
     print(request.form.get)
     print("\n \n New POST request... \n")
     dummyList = [request.form.get('id'),request.form.get('lat'),request.form.get('lng'), request.form.get('time')]
@@ -50,6 +53,17 @@ def events():
 
         Pushtodb(snappedlist)
     return "ok"
+
+
+@app.route('/api', methods=['GET', 'POST'])
+@crossdomain(origin='*')
+def api():
+
+    data = db.db_getpoints()
+    print("DATA: ")
+    print(data)
+    #jasonify()
+    return data
 
 
 if __name__ == "__main__":
