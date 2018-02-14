@@ -35,12 +35,23 @@ def events():
 
     fromDB = (db.db_getnewest(request.form.get('id')))
 
-    # HER SKAL DU SETTE INN TIL "VANLIG" LISTE STRUKTUR MARKUS
+    idn = np.array(request.form.getlist('id'))
+    lat = np.array(request.form.getlist('lat'))
+    lng = np.array(request.form.getlist('lng'))
+    time = np.array(request.form.getlist('time'))
+    data = np.array([idn, lat, lng, time])
+
+    data = np.transpose(data)
 
     if (fromDB is not None):
         temp = json.loads(fromDB)
-        prevOldest = [temp['id'], temp['lat'], temp['lng'], temp['time']]
+        prevOldest = np.array([temp['id'], temp['lat'], temp['lng'], temp['time']])
         positionlist.insert(0, prevOldest)
+        data = np.concatenate([prevOldest, data], axis=0)
+
+    print('data:', data.shape)
+    print(data)
+
     snappedlist = snap.snap_to_road(positionlist, True)
 
     #Delete overlaying points on same trip
