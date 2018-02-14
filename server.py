@@ -3,13 +3,16 @@ import json
 import snap
 import db
 import os
+from flask_cors import CORS
 
 import numpy as np
 from flask import *
 app = Flask(__name__)
+CORS(app)
 
 lenThreshold = 1
 globalList = []
+
 print("PID: ", os.getpid())
 
 def Pushtodb(Snappedlist):
@@ -26,34 +29,28 @@ def hello():
 
 @app.route('/events', methods=['POST'])
 def events():
-    global globalList
-    global lenThreshold
-    dummyList = [request.form.get('id'),request.form.get('lat'),request.form.get('lng'), request.form.get('time')]
-    globalList.append(dummyList)
-    print("golbal list er lengde: ", len(globalList))
-    if (len(globalList) > lenThreshold):
-        print("Original list: \n", globalList, "\n")
-        #print("recieved data: \n", dummyList, "\n")
-        #print("from DB: ", db.db_getnewest(request.form.get('id')))
-        #prevOldest = [request.form.get('id'),"37.67030362", "-122.46611581","1518010856"]
-        temp = json.loads(db.db_getnewest(request.form.get('id')))
-        if (temp is not None):
-            print("trigggeeeerd")
-            prevOldest = [temp['id'], temp['lat'], temp['lng'], temp['time']]
-            globalList.insert(0, prevOldest)
-        print("NEW list: \n", globalList)
-        snappedlist = snap.snap_to_road(globalList, True)
-        globalList = []
+    positionlist = []
+    print("New set of positions from client!")
+    print("getlist: \n", request.form.getlist('lat'))
 
-        #Delete overlaying points on same trip
-        delete_list = []
-        for i, row in enumerate(snappedlist[:-1]):
-            if np.all(row == snappedlist[i + 1]):
-                delete_list.append(i)
-        snappedlist = np.delete(snappedlist, delete_list, axis=0)
+    fromDB = (db.db_getnewest(request.form.get('id')))
 
-        Pushtodb(snappedlist)
+    # HER SKAL DU SETTE INN TIL "VANLIG" LISTE STRUKTUR MARKUS
 
+    if (fromDB is not None):
+        temp = json.loads(fromDB)
+        prevOldest = [temp['id'], temp['lat'], temp['lng'], temp['time']]
+        positionlist.insert(0, prevOldest)
+    snappedlist = snap.snap_to_road(positionlist, True)
+
+    #Delete overlaying points on same trip
+    delete_list = []
+    for i, row in enumerate(snappedlist[:-1]):
+        if np.all(row == snappedlist[i + 1]):
+            delete_list.append(i)
+    snappedlist = np.delete(snappedlist, delete_list, axis=0)
+
+   # Pushtodb(snappedlist)
     return "ok"
 
 
@@ -67,7 +64,7 @@ def login():
     print(request.form.get)
     type_ = request.form.get('type')
     idn = db.db_newtrip(type_)
-    print('login id:', idn)
+    print('login id:', idn, " with type_: ", type, " and type_", type_)
     return str(idn)
 
 
