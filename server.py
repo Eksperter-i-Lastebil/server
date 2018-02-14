@@ -30,11 +30,17 @@ def events():
     global lenThreshold
     dummyList = [request.form.get('id'),request.form.get('lat'),request.form.get('lng'), request.form.get('time')]
     globalList.append(dummyList)
-
+    print("golbal list er lengde: ", len(globalList))
     if (len(globalList) > lenThreshold):
         print("Original list: \n", globalList, "\n")
-        prevOldest = [request.form.get('id'),"37.67030362", "-122.46611581","1518010856"]
-        globalList.insert(0, prevOldest)
+        #print("recieved data: \n", dummyList, "\n")
+        #print("from DB: ", db.db_getnewest(request.form.get('id')))
+        #prevOldest = [request.form.get('id'),"37.67030362", "-122.46611581","1518010856"]
+        temp = json.loads(db.db_getnewest(request.form.get('id')))
+        if (temp is not None):
+            print("trigggeeeerd")
+            prevOldest = [temp['id'], temp['lat'], temp['lng'], temp['time']]
+            globalList.insert(0, prevOldest)
         print("NEW list: \n", globalList)
         snappedlist = snap.snap_to_road(globalList, True)
         globalList = []
@@ -62,7 +68,7 @@ def login():
     type_ = request.form.get('type')
     idn = db.db_newtrip(type_)
     print('login id:', idn)
-    return idn
+    return str(idn)
 
 
 if __name__ == "__main__":
