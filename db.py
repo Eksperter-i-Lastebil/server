@@ -32,7 +32,11 @@ def db_getpoints():
     return (json.dumps(data))
 
 def db_getnewest(idn):
-    return (json.dumps((db_points.search(Pos.id == idn))[-1]))
+    points = db_points.search(Pos.id == idn)
+    if points == []:
+        return None
+    else:
+        return (json.dumps(points[-1]))
 
 def db_gettrip(trip_id):
     return (db_points.search((Pos.id == trip_id) & (Pos.time > str(time.time()-Oldtime))))
