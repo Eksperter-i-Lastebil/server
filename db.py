@@ -14,9 +14,10 @@ def db_insert(idn, latitude, longitude, timestamp):
     with transaction(db_points) as tr:
         tr.insert({'id' : idn, 'lat' : latitude, 'lng' : longitude, 'time' : timestamp})
 
-def db_newtrip(plowtype, idn):
-    with transaction(db_trips) as tr:
-        tr.insert({'id' : idn,'type' : plowtype})
+def db_newtrip(plowtype):
+    # with transaction(db_trips) as tr:
+    idn = str(db_trips.insert({'type' : plowtype}))
+    return idn
 
 def db_getpoints():
     data = []

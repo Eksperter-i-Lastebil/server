@@ -55,8 +55,8 @@ def events():
     return "ok"
 
 
+# @crossdomain(origin='*')
 @app.route('/api', methods=['GET', 'POST'])
-@crossdomain(origin='*')
 def api():
 
     data = db.db_getpoints()
@@ -64,6 +64,14 @@ def api():
     print(data)
     #jasonify()
     return data
+
+@app.route('/login', methods=['POST'])
+def login():
+    print(request.form.get)
+    type_ = request.form.get('type')
+    idn = db.db_newtrip(type_)
+    print('login id:', idn)
+    return idn
 
 
 if __name__ == "__main__":
