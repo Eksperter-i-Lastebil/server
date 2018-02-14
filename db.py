@@ -33,7 +33,7 @@ def db_getpoints():
 
 def db_getnewest(idn):
     points = db_points.search(Pos.id == idn)
-    if points == []:
+    if not points:
         return None
     else:
         return (json.dumps(points[-1]))
