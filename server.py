@@ -33,8 +33,8 @@ def events():
 
     if (len(globalList) > lenThreshold):
         print("Original list: \n", globalList, "\n")
-        prevOldest = dummyList
-        # globalList.insert(0, prevOldest)
+        prevOldest = [request.form.get('id'),"37.67030362", "-122.46611581","1518010856"]
+        globalList.insert(0, prevOldest)
         print("NEW list: \n", globalList)
         snappedlist = snap.snap_to_road(globalList, True)
         globalList = []
@@ -47,6 +47,7 @@ def events():
         snappedlist = np.delete(snappedlist, delete_list, axis=0)
 
         Pushtodb(snappedlist)
+
     return "ok"
 
 
