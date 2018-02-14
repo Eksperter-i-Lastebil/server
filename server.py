@@ -8,61 +8,51 @@ import numpy as np
 from flask import *
 app = Flask(__name__)
 
+lenThreshold = 1
 globalList = []
-print(os.getpid())
-#db.db_newtrip('broyt','56')
+print("PID: ", os.getpid())
 
 def Pushtodb(Snappedlist):
     print("pushing to DB...")
-   # for row in Snappedlist:
-    #    db.db_insert(row[0],row[1],row[2],row[3])
-
+    for row in Snappedlist:
+        db.db_insert(row[0],row[1],row[2],row[3])
 
 @app.route("/")
 def index():
     return "Index!"
-
 @app.route("/hello")
 def hello():
     return "Hello World!"
 
 @app.route('/events', methods=['POST'])
 def events():
-#    os.getpid()
-    print(request.form.get)
-    print("\n \n New POST request... \n")
-    dummyList = [request.form.get('id'),request.form.get('lat'),request.form.get('lng'), request.form.get('time')]
-    print("dummy:", dummyList)
     global globalList
+    global lenThreshold
+    dummyList = [request.form.get('id'),request.form.get('lat'),request.form.get('lng'), request.form.get('time')]
     globalList.append(dummyList)
-    if (len(globalList) > 1):
-        print("multiple entries:")
-        print(globalList)
+
+    if (len(globalList) > lenThreshold):
+        print("Original list: \n", globalList, "\n")
+        prevOldest = dummyList
+        # globalList.insert(0, prevOldest)
+        print("NEW list: \n", globalList)
         snappedlist = snap.snap_to_road(globalList, True)
-        print("new:")
-        print(snappedlist.shape)
         globalList = []
 
+        #Delete overlaying points on same trip
         delete_list = []
         for i, row in enumerate(snappedlist[:-1]):
             if np.all(row == snappedlist[i + 1]):
                 delete_list.append(i)
         snappedlist = np.delete(snappedlist, delete_list, axis=0)
-        print(snappedlist.shape)
-        print(snappedlist)
 
         Pushtodb(snappedlist)
     return "ok"
 
 
-# @crossdomain(origin='*')
 @app.route('/api', methods=['GET', 'POST'])
 def api():
-
     data = db.db_getpoints()
-    print("DATA: ")
-    print(data)
-    #jasonify()
     return data
 
 @app.route('/login', methods=['POST'])
