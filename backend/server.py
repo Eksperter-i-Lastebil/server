@@ -36,7 +36,6 @@ def hello():
 @app.route('/events', methods=['POST'])
 def events():
     positionlist = []
-
     idn = np.array(request.form.getlist('id'))
     lat = np.array(request.form.getlist('lat'))
     lng = np.array(request.form.getlist('lng'))
@@ -49,7 +48,7 @@ def events():
     if (fromDB is not None):
         temp = json.loads(fromDB)
         prevOldest = np.array([[temp['id'], temp['lat'], temp['lng'], temp['time']]])
-        positionlist.insert(0, prevOldest)
+        # positionlist.insert(0, prevOldest)
         data = np.concatenate([prevOldest, data], axis=0)
 
     #print('data:', data.shape)
