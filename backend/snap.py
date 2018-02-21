@@ -14,7 +14,7 @@ def snap_to_road(data, interpolate=False, chunk_size=100):
 
     Parameters:
         data        : 2D list, each row in the matrix is a list on the form
-                      [id, lat, lng, time, type]
+                      [id, lat, lng, time]
         interpolate : bool, optional, whether to interpolate a path to include
                       all points forming the full road-geometry. When true,
                       additional interpolated points will also be returned,
@@ -28,7 +28,7 @@ def snap_to_road(data, interpolate=False, chunk_size=100):
     Returns:
         A list containing information on the snapped points.
     """
-    data = np.array(data)
+    # data = np.array(data)
     coords = data[:, 1:3]
     gmaps = googlemaps.Client(key='AIzaSyD8IMQPEn0qiIw144Sv7hrYDtcGcb7mcvk')
     chunks = []
