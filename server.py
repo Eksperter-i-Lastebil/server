@@ -81,7 +81,7 @@ def events():
     text_file2.close()
     ##
 
-    #Pushtodb(snappedlist)
+    Pushtodb(snappedlist)
     return "ok"
 
 
@@ -101,4 +101,4 @@ def login():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', threaded=False)
+    app.run(host='0.0.0.0')
