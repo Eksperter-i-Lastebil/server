@@ -29,7 +29,7 @@ def hello():
 
 @app.route('/events', methods=['POST'])
 def events():
-    positionlist = []
+    # positionlist = []
     print("New set of positions from client!")
     print("getlist: \n", request.form.getlist('lat'))
 
@@ -42,14 +42,11 @@ def events():
     data = np.transpose(data)
 
 
-
-
-
     fromDB = (db.db_getnewest(request.form.get('id')))
     if (fromDB is not None):
         temp = json.loads(fromDB)
         prevOldest = np.array([[temp['id'], temp['lat'], temp['lng'], temp['time']]])
-        positionlist.insert(0, prevOldest)
+        # positionlist.insert(0, prevOldest)
         data = np.concatenate([prevOldest, data], axis=0)
 
     print('data:', data.shape)
