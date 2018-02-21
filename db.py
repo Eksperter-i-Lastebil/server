@@ -5,8 +5,8 @@ import time
 from tinyrecord import transaction
 import json
 
-Pos       = Query()
-db_all    = TinyDB('db.json')
+Pos = Query()
+db_all = TinyDB('db.json')
 db_points = db_all.table('points')
 db_trips  = db_all.table('trips')
 

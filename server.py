@@ -3,6 +3,7 @@ import json
 import snap
 import db
 import os
+import NewDB
 from flask_cors import CORS
 
 import numpy as np
@@ -13,12 +14,17 @@ CORS(app)
 lenThreshold = 1
 globalList = []
 
+
+
+
 print("PID: ", os.getpid())
 
 def Pushtodb(Snappedlist):
-    print("pushing to DB...")
+    #print("pushing to DB...")
     for row in Snappedlist:
-        db.db_insert(row[0],row[1],row[2],row[3])
+        #db.db_insert(row[0],row[1],row[2],row[3])
+        NewDB.insertToDb(row[0],row[1],row[2],row[3])
+
 
 @app.route("/")
 def index():
@@ -30,9 +36,6 @@ def hello():
 @app.route('/events', methods=['POST'])
 def events():
     positionlist = []
-    print("New set of positions from client!")
-    print("getlist: \n", request.form.getlist('lat'))
-
 
     idn = np.array(request.form.getlist('id'))
     lat = np.array(request.form.getlist('lat'))
@@ -42,9 +45,6 @@ def events():
     data = np.transpose(data)
 
 
-
-
-
     fromDB = (db.db_getnewest(request.form.get('id')))
     if (fromDB is not None):
         temp = json.loads(fromDB)
@@ -52,8 +52,8 @@ def events():
         positionlist.insert(0, prevOldest)
         data = np.concatenate([prevOldest, data], axis=0)
 
-    print('data:', data.shape)
-    print(data)
+    #print('data:', data.shape)
+    #print(data)
 
     snappedlist = snap.snap_to_road(data, interpolate=False)
 
@@ -71,7 +71,7 @@ def events():
         #print("NEWSTER: \n", lat, "\n", lat[0])
         text_file.write("id: '{0}', lat lng {1}, {2} \n".format( snappedlist[i][0], snappedlist[i][1], snappedlist[i][2] ))
     text_file.close()
-    print("SNAP:", snappedlist)
+    #print("SNAP:", snappedlist)
     ##
 
     ##  DATALOGGER 2
@@ -87,18 +87,19 @@ def events():
 
 @app.route('/api', methods=['GET', 'POST'])
 def api():
-    data = db.db_getpoints()
-    print("return data: ", data)
-    return data
+    data = NewDB.getFromDB()
+    print(data)
+    return json.dumps(data)
 
 @app.route('/login', methods=['POST'])
 def login():
     print(request.form.get)
     type_ = request.form.get('type')
-    idn = db.db_newtrip(type_)
-    print('login id:',idn, " and type_", type_)
+    idn = NewDB.loginDB(type_)
+
+    print('login id:', idn, " and type", type_)
     return str(idn)
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', threaded = True)
