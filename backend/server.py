@@ -16,8 +16,10 @@ def Pushtodb(Snappedlist):
         NewDB.insertToDb(row[0],row[1],row[2],row[3])
 
 @app.route("/")
-def index():
-    return "Index!"
+@app.route("/<page>")
+def index(page="index.html"):
+    print(page)
+    return Blueprint('cast', __name__, static_folder="../frontend/dist", static_url_path='').send_static_file(page)
 
 @app.route("/hello")
 def hello():
