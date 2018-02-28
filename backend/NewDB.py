@@ -1,13 +1,11 @@
-##import mysql.connector
 
 from flask_cors import CORS
 
-from datetime import datetime
-import numpy as np
+
 import time
 from flask import *
-#from flask.ext.sqlalchemy import SQLAlchemy
 from flaskext.mysql import MySQL
+
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
@@ -52,51 +50,11 @@ def getFromDB():
             'time':newTime,
             'points':[{'lat':point[0], 'lng':point[1], 'time':point[2]} for point in posInTrip]
         })
-    #for x in returnArray:
-     #   print(x)
-
     return returnArray
 
-'''
-@app.route('/start')
-def start():
-    print("he")
-    loginDB("halla")
-    return ("jhe")
 
-@app.route('/add')
-def add():
-    print("add")
-    insertToDb("2", "31", "32", "123")
-    return ("jhe")
-
-@app.route('/all')
-def all():
-    print("all")
-    id = loginDB("broyt")
-    insertToDb(id, "1", "1", "1")
-    insertToDb(id, "2", "2", "2")
-    insertToDb(id, "3", "3", "3")
-    return ("all")
-
-@app.route('/test')
-def test():
-    print("test")
-    getFromDB()
-    return "ok..?"
-
-
-if __name__ == "__main__":
-    app.run()
-
-
-cnx = mysql.connector.connect(user='root', password='test',
-                              host='localhost',
-                              database='eilastebil')
-cnx.close()
-
-'''
-## MYSQL - QUERY
+## MYSQL - QUERY ##
+# just in case we need to drop DB and start over
 '''
 CREATE DATABASE `eitlastebil`
 
