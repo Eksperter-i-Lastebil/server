@@ -105,4 +105,3 @@ ENV/
 # editors etc
 .idea/
 *.swp
-*.swo
