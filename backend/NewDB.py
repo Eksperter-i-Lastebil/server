@@ -36,7 +36,7 @@ def insertToDb(idn, latitude, longitude, timestamp):
 def getFromDB():
     conn = mysql.connect()
     cursor = conn.cursor()
-    query = "SELECT * FROM trips WHERE DATE_SUB(CURDATE(),INTERVAL 7 DAY) <= startTime;"
+    query = "SELECT * FROM trips WHERE DATE_SUB(CURDATE(),INTERVAL 5 DAY) <= startTime;"
     cursor.execute(query)
     results = cursor.fetchall()
     returnArray = []

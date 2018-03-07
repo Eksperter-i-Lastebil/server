@@ -34,13 +34,16 @@ def events():
     data = np.array([idn, lat, lng, time])
     data = np.transpose(data)
 
+    text_file2 = open("Output2.txt", "a")
+    text_file2.write("\n \n Setter ny inn i DB\n")
+    text_file2.write("raa data: \n%s" % data)
 
     fromDB = (db.db_getnewest(request.form.get('id')))
     if (fromDB is not None):
         temp = json.loads(fromDB)
         prevOldest = np.array([[temp['id'], temp['lat'], temp['lng'], temp['time']]])
         data = np.concatenate([prevOldest, data], axis=0)
-    snappedlist = snap.snap_to_road(data, interpolate=False)
+    snappedlist = snap.snap_to_road(data, interpolate=True)
 
     #Delete overlaying points on same trip
     delete_list = []
@@ -48,6 +51,10 @@ def events():
         if np.all(row == snappedlist[i + 1]):
             delete_list.append(i)
     snappedlist = np.delete(snappedlist, delete_list, axis=0)
+
+
+    text_file2.write("\n etter snap: \n%s" % snappedlist)
+    text_file2.close()
 
     Pushtodb(snappedlist)
     return "ok"

@@ -1,0 +1,86 @@
+
+ 
+ Setter ny inn i DB
+for snap: [['<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>500 Internal Server Error</title>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error and was unable to complete your request.  Either the server is overloaded or there is an error in the application.</p>\n'
+  '63.351276911472' '10.360610997771' '1519827962']
+ ['<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>500 Internal Server Error</title>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error and was unable to complete your request.  Either the server is overloaded or there is an error in the application.</p>\n'
+  '63.352463780304' '10.360669784394' '1519827968']]
+ etter snap: [['<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>500 Internal Server Error</title>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error and was unable to complete your request.  Either the server is overloaded or there is an error in the application.</p>\n'
+  '63.351276911472' '10.360610997771' '1519827962']
+ ['<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>500 Internal Server Error</title>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error and was unable to complete your request.  Either the server is overloaded or there is an error in the application.</p>\n'
+  '63.352463780304' '10.360669784394' '1519827968']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.3510791' '10.3606012' '1519828094']
+ ['4' '63.352265968832' '10.360659986624' '1519828100']]
+ etter snap: [['4' '63.3510791' '10.3606012' '1519828094']
+ ['4' '63.352265968832' '10.360659986624' '1519828100']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.353452837664' '10.360718773247' '1519828106']
+ ['4' '63.354639706497' '10.360777559871' '1519828112']]
+ etter snap: [['4' '63.353452837664' '10.360718773247' '1519828106']
+ ['4' '63.354639706497' '10.360777559871' '1519828112']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.3557045' '10.3608303' '1519828118']
+ ['4' '63.355095238928' '10.359092261554' '1519828124']]
+ etter snap: [['4' '63.3557045' '10.3608303' '1519828118']
+ ['4' '63.355095238928' '10.359092261554' '1519828124']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.354973386714' '10.358744653864' '1519828124']
+ ['4' '63.355884878547' '10.359297077571' '1519828130']]
+ etter snap: [['4' '63.354973386714' '10.358744653864' '1519828124']
+ ['4' '63.355884878547' '10.359297077571' '1519828130']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.357019452804' '10.360076330657' '1519828136']
+ ['4' '63.358154027061' '10.360855583743' '1519828142']]
+ etter snap: [['4' '63.357019452804' '10.360076330657' '1519828136']
+ ['4' '63.358154027061' '10.360855583743' '1519828142']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.359288601317' '10.361634836829' '1519828148']
+ ['4' '63.360423175574' '10.362414089915' '1519828154']]
+ etter snap: [['4' '63.359288601317' '10.361634836829' '1519828148']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.361557749831' '10.363193343001' '1519828160']
+ ['4' '63.3625048' '10.3638438' '1519828166']]
+ etter snap: [['4' '63.361557749831' '10.363193343001' '1519828160']
+ ['4' '63.3625048' '10.3638438' '1519828166']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.362558072106' '10.366489024364' '1519828172']
+ ['4' '63.362611344212' '10.369134248727' '1519828178']]
+ etter snap: [['4' '63.362558072106' '10.366489024364' '1519828172']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.362664616318' '10.371779473091' '1519828184']
+ ['4' '63.362717888425' '10.374424697454' '1519828190']]
+ etter snap: [['4' '63.362664616318' '10.371779473091' '1519828184']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.363139405429' '10.376157615969' '1519828196']
+ ['4' '63.364308521716' '10.376617563874' '1519828202']]
+ etter snap: [['4' '63.363139405429' '10.376157615969' '1519828196']
+ ['4' '63.364308521716' '10.376617563874' '1519828202']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.365477638003' '10.37707751178' '1519828208']
+ ['4' '63.366312449103' '10.377495949352' '1519828214']]
+ etter snap: [['4' '63.365477638003' '10.37707751178' '1519828208']
+ ['4' '63.366312449103' '10.377495949352' '1519828214']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.366505336379' '10.37759433669' '1519828214']
+ ['4' '63.367469772758' '10.37808627338' '1519828220']]
+ etter snap: [['4' '63.366505336379' '10.37759433669' '1519828214']
+ ['4' '63.367469772758' '10.37808627338' '1519828220']]
+ 
+ Setter ny inn i DB
+for snap: [['4' '63.367662660034' '10.378184660718' '1519828220']
+ ['4' '63.368819983689' '10.378774984747' '1519828226']]
+ etter snap: [['4' '63.367662660034' '10.378184660718' '1519828220']
+ ['4' '63.368819983689' '10.378774984747' '1519828226']]
