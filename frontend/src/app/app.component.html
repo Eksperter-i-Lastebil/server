@@ -1,0 +1,22 @@
+<nav class="navbar fixed-top navbar-light bg-light">
+    <a href="#" class="navbar-brand">Brøytestatus</a>
+		<form class="form-inline my-2 my-lg-0" >
+				<input class="form-control mr-sm-2" type="search" #search [formControl]="searchControl" aria-label="Search">
+    </form>
+</nav>
+
+<div class="card" id="floating-panel" opacity="0.0">
+    <ul class="list-group">
+       <li class="list-group-item" style="background-color:Tomato;">Strøing</li>
+       <li class="list-group-item" style="background-color:Orange;">Brøyting</li>
+       <li class="list-group-item" style="background-color:DodgerBlue;">Fresing</li>
+       <li class="list-group-item" style="background-color:MediumSeaGreen;">Salting</li>
+       <li class="list-group-item" style="background-color:SlateBlue;">Skraping</li>
+    </ul>
+</div>
+<agm-map [latitude]="latitude" [longitude]="longitude">
+    <agm-polyline *ngFor="let trip of trips" [strokeColor]="setColor(trip)" [strokeOpacity]="setOpacity(trip)">
+        <agm-polyline-point *ngFor="let point of trip.points" [latitude]="toFloat(point.lat)" [longitude]="toFloat(point.lng)">
+        </agm-polyline-point>
+    </agm-polyline>
+</agm-map>
