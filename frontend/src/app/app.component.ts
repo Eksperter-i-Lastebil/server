@@ -72,8 +72,12 @@ export class AppComponent implements OnInit{
   public getLoop()
   {
     this.tripsService.update().subscribe(data => {
-      console.log("yeap");
+      //console.log("yeap");
       this.trips = data;
+      for(var i = 0; i < this.trips.length; i++) {
+        this.trips[i].type = this.trips[i].type.slice(2).toLowerCase().replace(" ", "").split(",");
+      }
+      //console.log(this.trips);
       });
   }
 
@@ -88,23 +92,23 @@ export class AppComponent implements OnInit{
 
   setColor(trip)
   {
-    if(trip.type == ", Stroying")
+    if(trip == "stroying")
     {
       return 'tomato';
     }
-    else if(trip.type == ", Broyting")
+    else if(trip == "broyting")
     {
       return 'Orange';
     }
-    else if(trip.type == ", Fresing")
+    else if(trip == "fresing")
     {
       return 'DodgerBlue';
     }
-    else if(trip.type == ", Salting")
+    else if(trip == "salting")
     {
       return 'MediumSeaGreen';
     }
-    else if(trip.type == ", Skraping")
+    else if(trip == "skraping")
     {
       return 'SlateBlue';
     }

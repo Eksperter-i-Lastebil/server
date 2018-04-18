@@ -15,8 +15,10 @@
     </ul>
 </div>
 <agm-map [latitude]="latitude" [longitude]="longitude">
-    <agm-polyline *ngFor="let trip of trips" [strokeColor]="setColor(trip)" [strokeOpacity]="setOpacity(trip)">
-        <agm-polyline-point *ngFor="let point of trip.points" [latitude]="toFloat(point.lat)" [longitude]="toFloat(point.lng)">
-        </agm-polyline-point>
-    </agm-polyline>
+    <div *ngFor="let trip of trips">
+      <agm-polyline *ngFor="let c of trip.type; let i = index" [strokeColor]="setColor(c)" [strokeWeight]="i == 0 ? 4 : i*10" [zIndex]="5-i">
+          <agm-polyline-point *ngFor="let point of trip.points" [latitude]="toFloat(point.lat)" [longitude]="toFloat(point.lng)">
+          </agm-polyline-point>
+      </agm-polyline>
+    </div>
 </agm-map>
